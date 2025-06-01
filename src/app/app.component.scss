@@ -1,0 +1,120 @@
+/* Container geral */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #444;
+  background: #f9faff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Título principal */
+.title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  color: #222;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Container das garagens em flex */
+.garagens {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* Cada card de garagem */
+.garagem {
+  flex: 1;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow:
+    0 5px 15px rgba(0,123,255,0.15),
+    0 10px 40px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Efeito hover */
+.garagem:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 12px 20px rgba(0,123,255,0.3),
+    0 20px 60px rgba(0,0,0,0.1);
+}
+
+/* Título das garagens */
+.garagem h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Texto das contagens */
+.garagem p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  color: #555;
+}
+
+/* Estilos específicos para cada garagem */
+.garagem-cimatec {
+  border: 3px solid #007bff;
+  color: #0056b3;
+  box-shadow:
+    0 5px 15px rgba(0,123,255,0.25);
+}
+
+.garagem-vip {
+  border: 3px solid #28a745;
+  color: #19692c;
+  box-shadow:
+    0 5px 15px rgba(40,167,69,0.25);
+}
+
+/* Estilizando o número forte */
+.garagem p strong {
+  font-size: 2.2rem;
+  color: inherit;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Mensagem de feedback */
+.mensagem {
+  margin-top: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  font-size: 1.2rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #eef2ff;
+  box-shadow: inset 0 0 10px #c7d1ff;
+  user-select: none;
+}
+
+/* Spinner styling */
+.spinner {
+  margin: 25px auto;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #007bff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
