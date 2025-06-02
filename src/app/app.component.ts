@@ -77,7 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
       else if (garagem === 'VIP') this.loadingVIP = true;
     }
 
-    this.http.get<any>(`http://localhost:3000/garagem/contagem?garagem=${encodeURIComponent(garagem)}`)
+    this.http.get<any>(`https://garagem-backend-stia.onrender.com/garagem/contagem?garagem=${encodeURIComponent(garagem)}`)
       .subscribe(res => {
         if (garagem === 'Cimatec Park') {
           this.contagemCimatec = res.contagemAtual;
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.historicoErroVIP = null;
     }
 
-    this.http.get<Evento[]>(`http://localhost:3000/garagem/historico?garagem=${encodeURIComponent(garagem)}&data=${encodeURIComponent(data)}`)
+    this.http.get<Evento[]>(`https://garagem-backend-stia.onrender.com/garagem/historico?garagem=${encodeURIComponent(garagem)}&data=${encodeURIComponent(data)}`)
       .subscribe({
         next: (res) => {
           if (garagem === 'Cimatec Park') {
@@ -146,7 +146,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (garagem === 'Cimatec Park') this.loadingCimatec = true;
     else if (garagem === 'VIP') this.loadingVIP = true;
 
-    this.http.post<any>('http://localhost:3000/garagem/evento', { evento: tipo, garagem })
+    this.http.post<any>('https://garagem-backend-stia.onrender.com/garagem/evento', { evento: tipo, garagem })
       .subscribe(res => {
         if (garagem === 'Cimatec Park') {
           this.mensagemCimatec = res.mensagem;
