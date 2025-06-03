@@ -1,86 +1,34 @@
 <div class="container">
-  <h1 class="title">Controle de Garagens</h1>
+  <h1 class="title">Controle de Garagens 🚗</h1>
 
   <div class="garagens">
     <!-- Garagem Cimatec -->
     <div class="garagem garagem-cimatec">
       <h2>Cimatec Park</h2>
-
       <p>
         Veículos no local:
         <strong>{{ contagemCimatec }}</strong>
-        <span *ngIf="loadingCimatec" class="spinner"></span>
       </p>
 
-      <p class="mensagem" *ngIf="mensagemCimatec">{{ mensagemCimatec }}</p>
-
-      <hr />
-
-      <label for="dataCimatec">Selecionar data para histórico:</label>
-      <input
-        id="dataCimatec"
-        type="date"
-        [(ngModel)]="dataConsulta"
-        (change)="historicoVisivelCimatec ? carregarHistorico('Cimatec Park', dataConsulta) : null"
-      />
-
-      <button (click)="toggleHistorico('Cimatec Park')">
-        {{ historicoVisivelCimatec ? 'Ocultar' : 'Mostrar' }} Histórico
-      </button>
-
-      <div *ngIf="historicoVisivelCimatec" class="historico">
-        <p *ngIf="historicoCarregandoCimatec">Carregando histórico...</p>
-        <p *ngIf="historicoErroCimatec" class="erro">{{ historicoErroCimatec }}</p>
-
-        <ul *ngIf="!historicoCarregandoCimatec && !historicoErroCimatec">
-          <li *ngFor="let evento of historicoCimatec">
-            {{ evento.tipo | titlecase }} - {{ evento.createdAt | date: 'shortTime' }}
-          </li>
-          <li *ngIf="historicoCimatec.length === 0">
-            Nenhum evento registrado nesta data.
-          </li>
-        </ul>
+      <div class="historico">
+        <label for="dataCimatec">Selecionar data para histórico:</label>
+        <input id="dataCimatec" type="date" />
+        <button class="btn-historico">Ver Histórico</button>
       </div>
     </div>
 
     <!-- Garagem VIP -->
     <div class="garagem garagem-vip">
       <h2>VIP</h2>
-
       <p>
         Veículos no local:
         <strong>{{ contagemVIP }}</strong>
-        <span *ngIf="loadingVIP" class="spinner"></span>
       </p>
 
-      <p class="mensagem" *ngIf="mensagemVIP">{{ mensagemVIP }}</p>
-
-      <hr />
-
-      <label for="dataVIP">Selecionar data para histórico:</label>
-      <input
-        id="dataVIP"
-        type="date"
-        [(ngModel)]="dataConsulta"
-        (change)="historicoVisivelVIP ? carregarHistorico('VIP', dataConsulta) : null"
-      />
-
-      <button (click)="toggleHistorico('VIP')">
-        {{ historicoVisivelVIP ? 'Ocultar' : 'Mostrar' }} Histórico
-      </button>
-
-      <div *ngIf="historicoVisivelVIP" class="historico">
-        <p *ngIf="historicoCarregandoVIP">Carregando histórico...</p>
-        <p *ngIf="historicoErroVIP" class="erro">{{ historicoErroVIP }}</p>
-
-        <ul *ngIf="!historicoCarregandoVIP && !historicoErroVIP">
-          <li *ngFor="let evento of historicoVIP">
-            {{ evento.tipo | titlecase }} - {{ evento.createdAt | date: 'shortTime' }}
-          </li>
-          <li *ngIf="historicoVIP.length === 0">
-            Nenhum evento registrado nesta data.
-          </li>
-        </ul>
+      <div class="historico">
+        <label for="dataVIP">Selecionar data para histórico:</label>
+        <input id="dataVIP" type="date" />
+        <button class="btn-historico">Ver Histórico</button>
       </div>
     </div>
   </div>
