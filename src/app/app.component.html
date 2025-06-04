@@ -32,4 +32,27 @@
       </div>
     </div>
   </div>
+
+<!-- app.component.html -->
+
+<div>
+  <h3>Ajustar Quantidade de Carros</h3>
+
+  <label for="garageSelect">Garagem:</label>
+  <select id="garageSelect" [(ngModel)]="garageSelecionada">
+    <option value="A">Garagem VIP</option>
+    <option value="B">Garagem CIMATEC PARK</option>
+  </select>
+</div>
+
+<div>
+  <label for="quantidadeInput">Quantidade:</label>
+  <input id="quantidadeInput" type="number" [(ngModel)]="quantidade" />
+</div>
+
+<button (click)="ajustarQuantidade()">Salvar</button>
+
+<p *ngIf="mensagem">{{ mensagem }}</p>
+
+
 </div>

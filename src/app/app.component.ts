@@ -18,9 +18,16 @@ export class AppComponent implements OnInit, OnDestroy {
   loadingCimatec = false;
   loadingVIP = false;
 
+  idParaEditar: number = 1;
+  novaAcao: string = 'entrada';
+  novaGaragem: string = 'A';
+
   private intervalo: any;
 
   constructor(private http: HttpClient) {}
+
+
+  
 
   ngOnInit() {
     this.atualizarContagens();
@@ -37,6 +44,24 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getContagem('Cimatec Park');
     this.getContagem('VIP');
   }
+
+  garageSelecionada = 'A';
+quantidade = 0;
+mensagem = '';
+
+ajustarQuantidade() {
+  const url = `https://obluda.pythonanywhere.com/api/ajustar_quantidade/${this.garageSelecionada}/`;
+
+  this.http.post(url, { quantidade: this.quantidade }).subscribe({
+    next: (res: any) => {
+      this.mensagem = res.message || 'Quantidade ajustada com sucesso!';
+      this.atualizarContagens(); // Atualiza os números na tela
+    },
+    error: (err) => {
+      this.mensagem = 'Erro ao ajustar quantidade: ' + (err.error?.error || err.message);
+    }
+  });
+}
 
  getContagem(garagem: string) {
   let url = '';
@@ -65,6 +90,19 @@ export class AppComponent implements OnInit, OnDestroy {
       if (garagem === 'Cimatec Park') this.loadingCimatec = false;
       else if (garagem === 'VIP') this.loadingVIP = false;
     }
+
+
+    
   });
+
+  
+
+  
 }
+
+
+
+
+
+
 }
