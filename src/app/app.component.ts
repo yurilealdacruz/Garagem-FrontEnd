@@ -104,7 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   validarLogin() {
     // Aqui você pode validar contra um usuário e senha fixos (exemplo simples)
-    if (this.usuario === 'isael' && this.senha === 'ah1_brujas_ah1') {
+    if (this.usuario === 'ddd' && this.senha === 'ddd') {
       this.senhaValida = true;
       this.modalRef.close();
       this.abrirModalEditar();
