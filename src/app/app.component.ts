@@ -17,10 +17,11 @@ export class AppComponent implements OnInit, OnDestroy {
   mensagemVIP = '';
   loadingCimatec = false;
   loadingVIP = false;
-
   idParaEditar: number = 1;
   novaAcao: string = 'entrada';
   novaGaragem: string = 'A';
+  mostrarEditor = false;
+
 
   private intervalo: any;
 

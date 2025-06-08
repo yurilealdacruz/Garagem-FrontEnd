@@ -3,7 +3,13 @@
 
   <div class="garagens">
     <!-- Garagem Cimatec -->
+     
     <div class="garagem garagem-cimatec">
+
+        <div class="editar-wrapper">
+        <button class="btn-editar" (click)="mostrarEditor = !mostrarEditor">Editar</button>
+        </div>
+
       <h2>Cimatec Park</h2>
       <p>
         Veículos no local:
@@ -19,6 +25,15 @@
 
     <!-- Garagem VIP -->
     <div class="garagem garagem-vip">
+
+        
+        <div class="editar-wrapper">
+        <button class="btn-editar" (click)="mostrarEditor = !mostrarEditor">Editar</button>
+
+        </div>
+
+
+
       <h2>VIP</h2>
       <p>
         Veículos no local:
@@ -32,27 +47,34 @@
       </div>
     </div>
   </div>
-
 <!-- app.component.html -->
-
 <div>
-  <h3>Ajustar Quantidade de Carros</h3>
 
-  <label for="garageSelect">Garagem:</label>
-  <select id="garageSelect" [(ngModel)]="garageSelecionada">
-    <option value="A">Garagem CIMATEC PARK</option>
-    <option value="B">Garagem VIP</option>
-  </select>
+
+<!-- Modal de Edição -->
+<div class="modal-backdrop" *ngIf="mostrarEditor">
+  <div class="modal">
+    <h2>Ajustar Quantidade de Carros</h2>
+
+    <label for="garageSelect">Garagem:</label>
+    <select id="garageSelect" [(ngModel)]="garageSelecionada">
+      <option value="A">Garagem CIMATEC PARK</option>
+      <option value="B">Garagem VIP</option>
+    </select>
+
+    <label for="quantidadeInput">Quantidade:</label>
+    <input id="quantidadeInput" type="number" [(ngModel)]="quantidade" />
+
+    <div class="modal-buttons">
+      <button class="btn-salvar" (click)="ajustarQuantidade()">Salvar</button>
+      <button class="btn-cancelar" (click)="mostrarEditor = false">Cancelar</button>
+    </div>
+
+    <p *ngIf="mensagem">{{ mensagem }}</p>
+  </div>
 </div>
 
-<div>
-  <label for="quantidadeInput">Quantidade:</label>
-  <input id="quantidadeInput" type="number" [(ngModel)]="quantidade" />
-</div>
 
-<button (click)="ajustarQuantidade()">Salvar</button>
-
-<p *ngIf="mensagem">{{ mensagem }}</p>
 
 
 </div>
