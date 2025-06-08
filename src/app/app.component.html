@@ -7,7 +7,7 @@
     <div class="garagem garagem-cimatec">
 
         <div class="editar-wrapper">
-        <button class="btn-editar" (click)="mostrarEditor = !mostrarEditor">Editar</button>
+        <button class="btn-editar" (click)="abrirModalLogin()">Editar</button>
         </div>
 
       <h2>Cimatec Park</h2>
@@ -19,7 +19,7 @@
       <div class="historico">
       <label for="dataCimatec">Selecionar data para histórico:</label>
       <input id="dataCimatec" type="date" [(ngModel)]="dataSelecionadaCimatec" />
-      <button class="btn-historico" (click)="buscarHistorico('A', dataSelecionadaCimatec)">Ver Histórico</button>
+      <button class="btn-historico" (click)="buscarHistorico('B', dataSelecionadaCimatec)">Ver Histórico</button>
     </div>
     </div>
 
@@ -28,7 +28,7 @@
 
         
         <div class="editar-wrapper">
-        <button class="btn-editar" (click)="mostrarEditor = !mostrarEditor">Editar</button>
+        <button class="btn-editar" (click)="abrirModalLogin()">Editar</button>
 
         </div>
 
@@ -42,7 +42,7 @@
           <div class="historico">
             <label for="dataVIP">Selecionar data para histórico:</label>
             <input id="dataVIP" type="date" [(ngModel)]="dataSelecionadaVIP" />
-            <button class="btn-historico" (click)="buscarHistorico('B', dataSelecionadaVIP)">Ver Histórico</button>
+            <button class="btn-historico" (click)="buscarHistorico('A', dataSelecionadaVIP)">Ver Histórico</button>
           </div>
     </div>
   </div>
@@ -59,31 +59,40 @@
 </div>
 
 
+<ng-template #loginModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <label>Usuário:</label>
+    <input type="text" [(ngModel)]="usuario" class="form-control" />
+    <label>Senha:</label>
+    <input type="password" [(ngModel)]="senha" class="form-control" />
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="validarLogin()">Entrar</button>
+  </div>
+</ng-template>
 
-<!-- Modal de Edição -->
-<div class="modal-backdrop" *ngIf="mostrarEditor">
-  <div class="modal">
-    <h2>Ajustar Quantidade de Carros</h2>
-
-    <label for="garageSelect">Garagem:</label>
-    <select id="garageSelect" [(ngModel)]="garageSelecionada">
+<!-- Modal Editar -->
+<ng-template #editarModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Ajustar Quantidade de Carros</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <label>Garagem:</label>
+    <select [(ngModel)]="garageSelecionada" class="form-control">
       <option value="A">Garagem CIMATEC PARK</option>
       <option value="B">Garagem VIP</option>
     </select>
-
-    <label for="quantidadeInput">Quantidade:</label>
-    <input id="quantidadeInput" type="number" [(ngModel)]="quantidade" />
-
-    <div class="modal-buttons">
-      <button class="btn-salvar" (click)="ajustarQuantidade()">Salvar</button>
-      <button class="btn-cancelar" (click)="mostrarEditor = false">Cancelar</button>
-    </div>
-
-    <p *ngIf="mensagem">{{ mensagem }}</p>
+    <label>Quantidade:</label>
+    <input type="number" [(ngModel)]="quantidade" class="form-control" />
+    <p *ngIf="mensagem" class="mt-2">{{ mensagem }}</p>
   </div>
-</div>
-
-
-
-
-</div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="ajustarQuantidade()">Salvar</button>
+    <button class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+  </div>
+</ng-template>
