@@ -39,6 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
+
+
   ngOnInit() {
     this.atualizarContagens();
     this.intervalo = setInterval(() => {
@@ -82,18 +84,28 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  private GARAGE_LABELS: Record<string, string> = {
+    'A': 'Garagem VIP',
+    'B': 'Garagem CIMATEC PARK'
+  };
+
   buscarHistorico(garagem: string, data: string) {
-    const url = `https://obluda.pythonanywhere.com/api/historico/${garagem}/${data}/`;
-    this.http.get<any>(url).subscribe({
-      next: (res) => {
-        this.historico = res.historico;
-      },
-      error: (err) => {
-        this.historico = [];
-        alert('Erro ao buscar histórico: ' + (err.error?.error || err.message));
-      },
-    });
-  }
+  const url = `https://obluda.pythonanywhere.com/api/historico/${garagem}/${data}/`;
+  this.http.get<any>(url).subscribe({
+    next: (res) => {
+      this.historico = res.historico.map((item: any) => ({
+        ...item,
+        garagem_legivel: this.GARAGE_LABELS[item.garagem] || item.garagem
+      }));
+    },
+    error: (err) => {
+      this.historico = [];
+      alert('Erro ao buscar histórico: ' + (err.error?.error || err.message));
+    },
+  });
+}
+
+
 
   abrirModalLogin() {
     this.usuario = '';
