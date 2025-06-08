@@ -21,6 +21,10 @@ export class AppComponent implements OnInit, OnDestroy {
   novaAcao: string = 'entrada';
   novaGaragem: string = 'A';
   mostrarEditor = false;
+  dataSelecionadaCimatec = '';
+  dataSelecionadaVIP = '';
+  historico: any[] = [];
+
 
 
   private intervalo: any;
@@ -92,14 +96,22 @@ ajustarQuantidade() {
       else if (garagem === 'VIP') this.loadingVIP = false;
     }
 
-
-    
   });
-
-  
-
-  
 }
+
+buscarHistorico(garagem: string, data: string) {
+  const url = `https://obluda.pythonanywhere.com/api/historico/${garagem}/${data}/`;
+  this.http.get<any>(url).subscribe({
+    next: (res) => {
+      this.historico = res.historico;
+    },
+    error: (err) => {
+      this.historico = [];
+      alert('Erro ao buscar histórico: ' + (err.error?.error || err.message));
+    }
+  });
+}
+
 
 
 

@@ -17,10 +17,10 @@
       </p>
 
       <div class="historico">
-        <label for="dataCimatec">Selecionar data para histórico:</label>
-        <input id="dataCimatec" type="date" />
-        <button class="btn-historico">Ver Histórico</button>
-      </div>
+      <label for="dataCimatec">Selecionar data para histórico:</label>
+      <input id="dataCimatec" type="date" [(ngModel)]="dataSelecionadaCimatec" />
+      <button class="btn-historico" (click)="buscarHistorico('A', dataSelecionadaCimatec)">Ver Histórico</button>
+    </div>
     </div>
 
     <!-- Garagem VIP -->
@@ -39,16 +39,25 @@
         Veículos no local:
         <strong>{{ contagemVIP }}</strong>
       </p>
-
-      <div class="historico">
-        <label for="dataVIP">Selecionar data para histórico:</label>
-        <input id="dataVIP" type="date" />
-        <button class="btn-historico">Ver Histórico</button>
-      </div>
+          <div class="historico">
+            <label for="dataVIP">Selecionar data para histórico:</label>
+            <input id="dataVIP" type="date" [(ngModel)]="dataSelecionadaVIP" />
+            <button class="btn-historico" (click)="buscarHistorico('B', dataSelecionadaVIP)">Ver Histórico</button>
+          </div>
     </div>
   </div>
 <!-- app.component.html -->
 <div>
+
+  <div class="historico-resultado" *ngIf="historico.length > 0">
+  <h3>Histórico:</h3>
+  <ul>
+    <li *ngFor="let item of historico">
+      {{ item.horario }} - {{ item.acao | titlecase }} - {{ item.garagem }}
+    </li>
+  </ul>
+</div>
+
 
 
 <!-- Modal de Edição -->
